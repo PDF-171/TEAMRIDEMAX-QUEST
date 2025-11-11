@@ -121,25 +121,56 @@
     <p class="big-instruction"><strong>Finish these tasks to unlock your Team Ridemax surprise 👇</strong></p>
 
     <ol>
-      <li>
-        1️⃣ Follow the 
-        <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank" onclick="unlockTask(2)">Team Ridemax Facebook page</a>
-      </li>
-      <li id="task2" class="locked">
-        2️⃣ Follow our 
-        <a href="https://www.instagram.com/teamridemaxph/" target="_blank" onclick="unlockTask(3)">Team Ridemax Instagram account</a>
-      </li>
-      <li id="task3" class="locked">
-        3️⃣ Bring the printed QR code with you to the Team Ridemax booth
-      </li>
-    </ol>
-  </main>
+  <li>
+    1️⃣ Follow the 
+    <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank" onclick="unlockTask(2)">Team Ridemax Facebook page</a>
+  </li>
+  <li id="task2" class="locked">
+    <div class="masked">2️⃣ Follow our Instagram account (Locked)</div>
+    <div class="real" style="display:none;">
+      2️⃣ Follow our 
+      <a href="https://www.instagram.com/teamridemaxph/" target="_blank" onclick="unlockTask(3)">Team Ridemax Instagram account</a>
+    </div>
+  </li>
+  <li id="task3" class="locked">
+    <div class="masked">3️⃣ Bring the printed QR code (Locked)</div>
+    <div class="real" style="display:none;">
+      3️⃣ Bring the printed QR code with you to the Team Ridemax booth
+    </div>
+  </li>
+</ol>
 
-  <footer>© 2025 Team Ridemax Philippines</footer>
+<style>
+  .locked .masked {
+    background: silver;
+    color: silver; /* text hidden */
+    height: 1.5em;
+    border-radius: 5px;
+    margin: 0.2em 0;
+  }
+  .locked .real {
+    display: none;
+  }
+  .unlocked .masked {
+    display: none;
+  }
+  .unlocked .real {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
 
-  <!-- 🔹 Confetti Script -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
+<script>
+  function unlockTask(taskNumber) {
+    const task = document.getElementById("task" + taskNumber);
+    if (task) {
+      task.classList.remove("locked");
+      task.classList.add("unlocked");
+    }
+  }
+</script>
+
     function launchConfetti() {
       const duration = 2 * 1000;
       const end = Date.now() + duration;
@@ -163,3 +194,4 @@
   </script>
 </body>
 </html>
+
