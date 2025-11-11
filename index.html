@@ -41,7 +41,12 @@
 
     h1 {
       color: var(--red);
-      font-size: 2rem; /* Increased font size */
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .big-instruction {
+      font-size: 2.5rem; /* Bigger than h1 */
       margin-bottom: 1.5rem;
     }
 
@@ -49,7 +54,7 @@
       text-align: left;
       display: inline-block;
       padding-left: 1.2rem;
-      font-size: 1.3rem; /* Increased font size */
+      font-size: 1.3rem;
       line-height: 1.8;
     }
 
@@ -68,19 +73,33 @@
       background: var(--gray);
       padding: 1rem;
       border-radius: 12px;
-      font-size: 1.3rem; /* Increased font size */
+      font-size: 1.3rem;
     }
 
     footer {
       margin-top: auto;
       padding: 1rem;
-      font-size: 1rem; /* Slightly bigger */
+      font-size: 1rem;
       color: #666;
+    }
+
+    /* 🔹 Locked/Unlocked styling */
+    .locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .unlocked {
+      opacity: 1;
+      pointer-events: auto;
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
       h1 {
         font-size: 1.8rem;
+      }
+      .big-instruction {
+        font-size: 2rem;
       }
       ol {
         font-size: 1.2rem;
@@ -99,13 +118,21 @@
   <main>
     <h1>🎉 Almost there! 🎉</h1>
 
-    <p><strong>Finish these tasks to unlock your Team Ridemax surprise 👇</strong></p>
-    <ol>
-      <li>1️⃣ Follow the <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank">Team Ridemax Facebook page</a></li>
-      <li>2️⃣ Follow our <a href="https://www.instagram.com/teamridemaxph/" target="_blank">Team Ridemax Instagram account</a></li>
-      <li>3️⃣ Bring the printed QR code with you to the Team Ridemax booth</li>
-    </ol>
+    <p class="big-instruction"><strong>Finish these tasks to unlock your Team Ridemax surprise 👇</strong></p>
 
+    <ol>
+      <li>
+        1️⃣ Follow the 
+        <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank" onclick="unlockTask(2)">Team Ridemax Facebook page</a>
+      </li>
+      <li id="task2" class="locked">
+        2️⃣ Follow our 
+        <a href="https://www.instagram.com/teamridemaxph/" target="_blank" onclick="unlockTask(3)">Team Ridemax Instagram account</a>
+      </li>
+      <li id="task3" class="locked">
+        3️⃣ Bring the printed QR code with you to the Team Ridemax booth
+      </li>
+    </ol>
   </main>
 
   <footer>© 2025 Team Ridemax Philippines</footer>
@@ -125,8 +152,14 @@
     }
 
     window.addEventListener('load', () => setTimeout(launchConfetti, 500));
+
+    function unlockTask(taskNumber) {
+      const task = document.getElementById("task" + taskNumber);
+      if (task) {
+        task.classList.remove("locked");
+        task.classList.add("unlocked");
+      }
+    }
   </script>
 </body>
 </html>
-
-
