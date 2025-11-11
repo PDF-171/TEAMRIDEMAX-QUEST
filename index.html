@@ -84,11 +84,21 @@
     }
 
     /* 🔹 Locked/Unlocked styling */
-    .locked {
-      opacity: 0.5;
-      pointer-events: none;
+    .locked .masked {
+      background: silver;
+      color: silver; /* text hidden */
+      height: 1.5em;
+      border-radius: 5px;
+      margin: 0.2em 0;
     }
-    .unlocked {
+    .locked .real {
+      display: none;
+    }
+    .unlocked .masked {
+      display: none;
+    }
+    .unlocked .real {
+      display: block;
       opacity: 1;
       pointer-events: auto;
       font-weight: bold;
@@ -117,60 +127,37 @@
   <!-- 🔹 Main Instructions -->
   <main>
     <h1>🎉 Almost there! 🎉</h1>
-
     <p class="big-instruction"><strong>Finish these tasks to unlock your Team Ridemax surprise 👇</strong></p>
 
     <ol>
-  <li>
-    1️⃣ Follow the 
-    <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank" onclick="unlockTask(2)">Team Ridemax Facebook page</a>
-  </li>
-  <li id="task2" class="locked">
-    <div class="masked">2️⃣ Follow our Instagram account (Locked)</div>
-    <div class="real" style="display:none;">
-      2️⃣ Follow our 
-      <a href="https://www.instagram.com/teamridemaxph/" target="_blank" onclick="unlockTask(3)">Team Ridemax Instagram account</a>
-    </div>
-  </li>
-  <li id="task3" class="locked">
-    <div class="masked">3️⃣ Bring the printed QR code (Locked)</div>
-    <div class="real" style="display:none;">
-      3️⃣ Bring the printed QR code with you to the Team Ridemax booth
-    </div>
-  </li>
-</ol>
+      <li>
+        1️⃣ Follow the 
+        <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank" onclick="unlockTask(2)">Team Ridemax Facebook page</a>
+      </li>
+      <li id="task2" class="locked">
+        <div class="masked">2️⃣ Follow our Instagram account (Locked)</div>
+        <div class="real">
+          2️⃣ Follow our 
+          <a href="https://www.instagram.com/teamridemaxph/" target="_blank" onclick="unlockTask(3)">Team Ridemax Instagram account</a>
+        </div>
+      </li>
+      <li id="task3" class="locked">
+        <div class="masked">3️⃣ Bring the printed QR code (Locked)</div>
+        <div class="real">
+          3️⃣ Bring the printed QR code with you to the Team Ridemax booth
+        </div>
+      </li>
+    </ol>
+  </main>
 
-<style>
-  .locked .masked {
-    background: silver;
-    color: silver; /* text hidden */
-    height: 1.5em;
-    border-radius: 5px;
-    margin: 0.2em 0;
-  }
-  .locked .real {
-    display: none;
-  }
-  .unlocked .masked {
-    display: none;
-  }
-  .unlocked .real {
-    display: block;
-    opacity: 1;
-    pointer-events: auto;
-  }
-</style>
+  <footer>© 2025 Team Ridemax Philippines</footer>
 
-<script>
-  function unlockTask(taskNumber) {
-    const task = document.getElementById("task" + taskNumber);
-    if (task) {
-      task.classList.remove("locked");
-      task.classList.add("unlocked");
-    }
-  }
-</script>
+  <!-- 🔹 Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+  <!-- 🔹 Scripts -->
+  <script>
+    // Confetti on page load
     function launchConfetti() {
       const duration = 2 * 1000;
       const end = Date.now() + duration;
@@ -181,9 +168,9 @@
         if (Date.now() < end) requestAnimationFrame(frame);
       })();
     }
-
     window.addEventListener('load', () => setTimeout(launchConfetti, 500));
 
+    // Sequential unlock tasks
     function unlockTask(taskNumber) {
       const task = document.getElementById("task" + taskNumber);
       if (task) {
@@ -194,4 +181,3 @@
   </script>
 </body>
 </html>
-
