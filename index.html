@@ -25,16 +25,12 @@
       min-height: 100vh;
     }
 
-    header {
-      background: var(--red);
-      width: 100%;
-      padding: 1.5rem 0;
-      border-bottom: 4px solid #b10000;
-    }
-
-    header img {
-      max-width: 160px;
+    /* 🔹 Big Logo */
+    .logo {
+      width: 75%;
+      max-width: 400px;
       height: auto;
+      margin: 2rem 0;
     }
 
     main {
@@ -45,16 +41,16 @@
 
     h1 {
       color: var(--red);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 2rem; /* Increased font size */
+      margin-bottom: 1.5rem;
     }
 
     ol {
       text-align: left;
       display: inline-block;
       padding-left: 1.2rem;
-      font-size: 1.1rem;
-      line-height: 1.6;
+      font-size: 1.3rem; /* Increased font size */
+      line-height: 1.8;
     }
 
     a {
@@ -68,35 +64,36 @@
     }
 
     .note {
-      margin-top: 1.8rem;
+      margin-top: 2rem;
       background: var(--gray);
       padding: 1rem;
       border-radius: 12px;
-      font-size: 1.1rem;
+      font-size: 1.3rem; /* Increased font size */
     }
 
     footer {
       margin-top: auto;
       padding: 1rem;
-      font-size: 0.9rem;
+      font-size: 1rem; /* Slightly bigger */
       color: #666;
     }
 
     @media (max-width: 600px) {
       h1 {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
       }
       ol {
-        font-size: 1rem;
+        font-size: 1.2rem;
+      }
+      .note {
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 🔹 Logo Header -->
-  <header>
-    <img src="TEAM-RIDEMAX.png" alt="Team Ridemax Logo">
-  </header>
+  <!-- 🔹 Big Logo only -->
+  <img src="TEAM-RIDEMAX.png" alt="Team Ridemax Logo" class="logo">
 
   <!-- 🔹 Main Instructions -->
   <main>
@@ -119,29 +116,17 @@
   <!-- 🔹 Confetti Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // 🎊 Auto confetti launch when QR is scanned (page loads)
     function launchConfetti() {
       const duration = 2 * 1000;
       const end = Date.now() + duration;
 
       (function frame() {
-        confetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-        });
-        confetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
-        });
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
         if (Date.now() < end) requestAnimationFrame(frame);
       })();
     }
 
-    // Trigger automatically on load (delay a bit for smooth entry)
     window.addEventListener('load', () => setTimeout(launchConfetti, 500));
   </script>
 </body>
