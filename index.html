@@ -3,89 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Team Ridemax Instructions</title>
+  <title>Team Ridemax Quest</title>
   <style>
+    :root {
+      --red: #e00000;
+      --blue: #007bff;
+      --gray: #f7f7f7;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #ffffff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff;
       color: #111;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
     }
+
     header {
-      margin-bottom: 1.5rem;
+      background: var(--red);
+      width: 100%;
+      padding: 1.5rem 0;
+      border-bottom: 4px solid #b10000;
     }
+
     header img {
-      max-width: 180px;
+      max-width: 160px;
       height: auto;
     }
+
+    main {
+      padding: 1.5rem;
+      max-width: 600px;
+      width: 100%;
+    }
+
     h1 {
-      color: #e00000;
+      color: var(--red);
+      font-size: 1.5rem;
       margin-bottom: 1rem;
     }
+
     ol {
       text-align: left;
       display: inline-block;
-      margin: 0 auto;
       padding-left: 1.2rem;
       font-size: 1.1rem;
+      line-height: 1.6;
     }
+
     a {
-      color: #0077cc;
+      color: var(--blue);
       text-decoration: none;
       font-weight: bold;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     .note {
-      margin-top: 2rem;
-      font-size: 1.1rem;
-      background: #f7f7f7;
+      margin-top: 1.8rem;
+      background: var(--gray);
       padding: 1rem;
-      border-radius: 10px;
+      border-radius: 12px;
+      font-size: 1.1rem;
     }
-    button {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      background: #007bff;
-      color: white;
+
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+      ol {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- 🔹 Header / Logo Area -->
+  <!-- 🔹 Logo Header -->
   <header>
-    <img src="TEAM-RIDEMAX.png" alt="Team Ridemax Logo" />
+    <img src="TEAM-RIDEMAX.png" alt="Team Ridemax Logo">
   </header>
 
-  <!-- 🔹 Instructions -->
-  <h1>🎉 Claim Your Team Ridemax Prize!</h1>
+  <!-- 🔹 Main Instructions -->
+  <main>
+    <h1>🎉 Claim Your Team Ridemax Prize!</h1>
 
-  <p><strong>Instructions:</strong></p>
-  <ol>
-    <li>1️⃣ Follow the <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank">Team Ridemax Facebook page</a></li>
-    <li>2️⃣ Follow our <a href="https://www.instagram.com/teamridemaxph/" target="_blank">Team Ridemax Instagram account</a></li>
-    <li>3️⃣ Bring the printed QR code with you to the Team Ridemax booth</li>
-  </ol>
+    <p><strong>Instructions:</strong></p>
+    <ol>
+      <li>1️⃣ Follow the <a href="https://www.facebook.com/TeamRidemaxPH" target="_blank">Team Ridemax Facebook page</a></li>
+      <li>2️⃣ Follow our <a href="https://www.instagram.com/teamridemaxph/" target="_blank">Team Ridemax Instagram account</a></li>
+      <li>3️⃣ Bring the printed QR code with you to the Team Ridemax booth</li>
+    </ol>
 
-  <div class="note">
-    🎁 <strong>Prizes can be claimed after verification by our team!</strong>
-  </div>
+    <div class="note">
+      🎁 <strong>Prizes can be claimed after verification by our team!</strong>
+    </div>
+  </main>
 
-  <!-- 🔹 Confetti Button -->
-  <button onclick="launchConfetti()">🎉 Celebrate!</button>
+  <footer>© 2025 Team Ridemax Philippines</footer>
 
-  <!-- 🔹 Canvas-Confetti Script -->
+  <!-- 🔹 Confetti Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
+    // 🎊 Auto confetti launch when QR is scanned (page loads)
     function launchConfetti() {
       const duration = 2 * 1000;
       const end = Date.now() + duration;
@@ -103,18 +137,12 @@
           spread: 55,
           origin: { x: 1 },
         });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
+        if (Date.now() < end) requestAnimationFrame(frame);
       })();
     }
 
-    // Optional: auto-launch confetti on page load
-    window.onload = () => {
-      setTimeout(launchConfetti, 500);
-    };
+    // Trigger automatically on load (delay a bit for smooth entry)
+    window.addEventListener('load', () => setTimeout(launchConfetti, 500));
   </script>
 </body>
 </html>
-
